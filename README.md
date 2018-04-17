@@ -2,7 +2,7 @@
 
 Take a setlist from setlist.fm and creates a Spotify playlist
 
-![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/setlist.png)
+https://www.setlist.fm/setlist/muse/2004/worthy-farm-pilton-england-63d7a6f3.html
 
 ![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/spotify.png)
 
