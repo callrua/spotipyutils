@@ -16,7 +16,7 @@ def pull_artist(site):
     soup = BeautifulSoup(page, 'html.parser')
     artist_name_box = soup.find('div', attrs={'class': 'setlistHeadline'})
     artist_name = artist_name_box.text.strip()
-    return artist_name.split('Edit venue', 1)[0].rstrip().replace('\n', ' ')
+    return artist_name.split('Edit venue', 1)[0].rstrip().replace('\n', ' ').replace('Setlist at', '@')
 
 
 def pull_setlist(site):
@@ -39,7 +39,7 @@ def add_to_playlist(playlist_songs, playlist_artist):
     playlists = sp.user_playlists(username, limit=1)
     for playlist in playlists['items']:
         for s in playlist_songs:
-            search_string = s + ' artist:' + playlist_artist.split('Setlist at ', 1)[0]
+            search_string = s + ' artist:' + playlist_artist.split('@ ', 1)[0]
             search_song = sp.search(q=search_string, type='track', limit=1)
             for song in search_song['tracks']['items']:
                 song_uri = song['uri']
@@ -55,7 +55,6 @@ if __name__ == '__main__':
     parser.add_argument('--setlist', '-s', dest='setlist', type=str, required=True,
                         help='Your setlist.fm link')
     args = parser.parse_args()
-    #song_page = 'https://www.setlist.fm/setlist/the-wonder-years/2018/stylus-leeds-england-3ece5af.html'
     song_page = args.setlist
     username = args.uid
     client_id = os.environ['SPOTIPY_CLIENT_ID']
@@ -75,9 +74,3 @@ if __name__ == '__main__':
         add_to_playlist(songs, artist)
     else:
         print "Can't get token for", username
-
-
-
-
-
-
