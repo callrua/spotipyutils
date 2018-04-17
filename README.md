@@ -2,9 +2,9 @@
 
 Take a setlist from setlist.fm and creates a Spotify playlist
 
-eg; https://www.setlist.fm/setlist/muse/2004/worthy-farm-pilton-england-63d7a6f3.html
+![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/setlist.png)
 
-https://open.spotify.com/user/1114884919/playlist/4ngqCwyCgpM2lB7U1UDZX0?si=MQhLkaADS5OF3DqwsazAfw
+![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/spotify.png)
 
 The following environment variables are required;
 
