@@ -57,14 +57,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     song_page = args.setlist
     username = args.uid
-    client_id = os.environ['SPOTIPY_CLIENT_ID']
-    client_secret = os.environ['SPOTIPY_CLIENT_SECRET']
     scope = "playlist-modify-private, playlist-modify-public"
-
-    token = util.prompt_for_user_token(username, scope,
-                                       client_id,
-                                       client_secret,
-                                       'http://localhost/')
+    token = util.prompt_for_user_token(username, scope)
     if token:
         sp = spotipy.Spotify(auth=token)
         artist = pull_artist(song_page)
