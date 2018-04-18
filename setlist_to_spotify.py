@@ -25,10 +25,7 @@ def pull_setlist(site):
     # parse the html using beautiful soup and store in variable `soup`
     soup = BeautifulSoup(page, 'html.parser')
     songs_html = soup.find_all('a', attrs={'class': 'songLabel'})
-    songs = []
-    for song in songs_html:
-        songs.append(song.text.strip())
-    return songs
+    return [songs.text.strip() for songs in songs_html]
 
 
 def create_playlist(playlist_name):
