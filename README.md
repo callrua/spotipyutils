@@ -23,8 +23,8 @@ usage; -u <spotify_user_id> -s <link_to_setlist>
 
 Dependencies;
 
-pip install spotipy
-pip install bs4
+- pip install spotipy
+- pip install bs4
 
 
 
