@@ -21,6 +21,13 @@ https://www.setlist.fm/setlist/muse/2004/worthy-farm-pilton-england-63d7a6f3.htm
 
 usage; -u <spotify_user_id> -s <link_to_setlist>
 
+Dependencies;
+
+pip install spotipy
+pip install bs4
+
+
+
 ## Playlist by Genre
 From ./utils/genre_to_playlist.py
 
