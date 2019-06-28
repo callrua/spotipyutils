@@ -9,7 +9,7 @@ The following environment variables are required;
 
 Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests)
 
-## SetlistToSpotify
+## Creating a playlist from a setlist.fm link
 
 From ./utils/setlist_to_spotify.py
 
@@ -26,12 +26,15 @@ Dependencies;
 - pip install spotipy
 - pip install bs4
 
+## Creating a playlist from user's top tracks 
+From ./utils/top_tracks_playlist.py
 
+![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/top_tracks_playlist.png)
 
-## Playlist by Genre
+usage; -u <spotify_user_id>
+
+## Creating a playlist from a list of genres
 From ./utils/genre_to_playlist.py
-
-Create a spotify playlist based on a list of genres.
 
 ![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/genre_to_playlist.png)
 
