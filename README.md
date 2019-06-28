@@ -1,4 +1,4 @@
-# SpotifyUtils
+# spotipyutils
 
 This repo is dedicated to utility scripts created for Spotify using the Spotify Web API. A python wrapper spotipy was used (details [here](https://github.com/plamere/spotipy))
 
