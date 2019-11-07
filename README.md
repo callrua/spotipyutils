@@ -3,11 +3,21 @@
 This repo is dedicated to utility scripts created for Spotify using the Spotify Web API. A python wrapper spotipy was used (details [here](https://github.com/plamere/spotipy))
 
 The following environment variables are required;
+
+```
 - SPOTIPY_CLIENT_ID
 - SPOTIPY_CLIENT_SECRET
 - SPOTIPY_REDIRECT_URI
+```
 
 Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests)
+
+# Python requirements
+
+```
+spotipy
+bs4
+```
 
 ## Creating a playlist from a setlist.fm link
 
