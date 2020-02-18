@@ -1,6 +1,7 @@
 # spotipyutils
 
-This repo is dedicated to utility scripts created for Spotify using the Spotify Web API. A python wrapper spotipy was used (details [here](https://github.com/plamere/spotipy))
+Python scripts leveraging the Spotify Web API to offset my laziness when making playlists. 
+A wrapper for the API was used ([spotipy](https://github.com/plamere/spotipy))
 
 The following environment variables are required;
 
@@ -14,16 +15,17 @@ Details around spotipy authorisation can be found [here](http://spotipy.readthed
 
 # Python requirements
 
+python-pip:
+
 ```
 spotipy
 bs4
 ```
 
+
 ## Creating a playlist from a setlist.fm link
 
-From ./utils/setlist_to_spotify.py
-
-Take a setlist from setlist.fm and creates a Spotify playlist
+./utils/setlist_to_spotify.py
 
 https://www.setlist.fm/setlist/muse/2004/worthy-farm-pilton-england-63d7a6f3.html
 
@@ -31,13 +33,12 @@ https://www.setlist.fm/setlist/muse/2004/worthy-farm-pilton-england-63d7a6f3.htm
 
 usage; -u <spotify_user_id> -s <link_to_setlist>
 
-Dependencies;
-
-- pip install spotipy
-- pip install bs4
 
 ## Creating a playlist from user's top tracks 
-From ./utils/top_tracks_playlist.py
+
+Creates 3 playlists, top songs based on long term, medium term and short term time period.
+
+./utils/top_tracks_playlist.py
 
 ![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/top_tracks_playlist.png)
 
