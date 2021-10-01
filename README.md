@@ -6,12 +6,24 @@ A wrapper for the Spotify ([spotipy](https://github.com/plamere/spotipy)) API wa
 The following environment variables are required;
 
 ```
-- SPOTIPY_CLIENT_ID
-- SPOTIPY_CLIENT_SECRET
-- SPOTIPY_REDIRECT_URI
+- SPOTIPY_CLIENT_ID: Taken from the Spotify Developer Dashboard (detals below)
+- SPOTIPY_CLIENT_SECRET: Taken from the Spotify Developer Dashboard (detals below)
+- SPOTIPY_REDIRECT_URI: http://localhost/ is sufficient when using spotipy (which we are)
 ```
 
 Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests) and [here](https://developer.spotify.com/documentation/general/guides/app-settings/)
+
+When running the app for the first time, the auth from the API will display:
+
+```
+Enter the URL you were redirected to:
+```
+
+Your preferred browser should pop-up, log in to your Spotify account and then paste the URL it brings you to into your command line, it will look something like:
+
+```
+http://localhost/?code=[...]
+```
 
 # Python requirements
 
