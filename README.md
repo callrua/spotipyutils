@@ -11,7 +11,7 @@ The following environment variables are required;
 - SPOTIPY_REDIRECT_URI
 ```
 
-Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests)
+Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests) and [here](https://developer.spotify.com/documentation/general/guides/app-settings/)
 
 # Python requirements
 
