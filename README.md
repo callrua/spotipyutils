@@ -1,7 +1,7 @@
 # spotipyutils
 
 Python scripts leveraging the Spotify Web API to offset my laziness when making playlists. 
-A wrapper for the API was used ([spotipy](https://github.com/plamere/spotipy))
+A wrapper for the Spotify ([spotipy](https://github.com/plamere/spotipy)) API was used 
 
 The following environment variables are required;
 
