@@ -3,6 +3,8 @@
 Python scripts leveraging the Spotify Web API to offset my laziness when making playlists. 
 A wrapper for the Spotify ([spotipy](https://github.com/plamere/spotipy)) API was used 
 
+You will need to set the tool up in your spotify developer profile to grab your SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET.
+
 The following environment variables are required;
 
 ```
@@ -12,7 +14,6 @@ The following environment variables are required;
 ```
 
 Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests).
-You will need to set the tool up in your spotify developer profile to grab your SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET.
 
 When running the app for the first time, the auth from the API will display:
 
@@ -28,7 +29,7 @@ http://localhost/?code=[...]
 
 # Python requirements
 
-python2.7+ 
+python3 
 
 python-pip packages:
 
