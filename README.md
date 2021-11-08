@@ -11,7 +11,8 @@ The following environment variables are required;
 - SPOTIPY_REDIRECT_URI: http://localhost/ is sufficient when using spotipy (which we are)
 ```
 
-Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests) and [here](https://developer.spotify.com/documentation/general/guides/app-settings/)
+Details around spotipy authorisation can be found [here](http://spotipy.readthedocs.io/en/latest/#authorized-requests).
+You will need to set the tool up in your spotify developer profile to grab your SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET.
 
 When running the app for the first time, the auth from the API will display:
 
