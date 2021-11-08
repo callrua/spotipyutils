@@ -1,7 +1,7 @@
 # Used to pull and parse setlist from setlist.fm
 
 # import libs
-import urllib2
+from urllib.request import urlopen
 import os
 import argparse
 import spotipy
@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 def pull_artist(site):
     # query the website and return the html to the variable page
-    page = urllib2.urlopen(site)
+    page = urlopen(site)
     # parse the html using beautiful soup and store in variable `soup`
     soup = BeautifulSoup(page, 'html.parser')
     artist_name_box = soup.find('div', attrs={'class': 'setlistHeadline'})
@@ -64,4 +64,4 @@ if __name__ == '__main__':
         songs = pull_setlist(song_page)
         add_to_playlist(songs, artist)
     else:
-        print "Can't get token for", username
+        print("Can't get token for {}").format(username)
