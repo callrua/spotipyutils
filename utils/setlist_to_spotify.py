@@ -21,7 +21,7 @@ def pull_artist(site):
 
 def pull_setlist(site):
     # query the website and return the html to the variable page
-    page = urllib2.urlopen(site)
+    page = urlopen(site)
     # parse the html using beautiful soup and store in variable `soup`
     soup = BeautifulSoup(page, 'html.parser')
     songs_html = soup.find_all('a', attrs={'class': 'songLabel'})
