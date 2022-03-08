@@ -30,19 +30,28 @@ class Spotify:
         self.playlist_name = ("%s %s" % (str(self.genres), str(self.curr_time)))
 
     def main(self):
-        create_blank_playlist(self)
         accepted_genre_list = self.spotify.recommendation_genre_seeds()['genres']
         for i in self.genres:
             if i not in accepted_genre_list:
-                print("ERROR\n%s is not a recognised genres. "
+                print("ERROR\n%s is not a recognised genre. "
                       "Please choose any from the following list of accepted genres:\n" % i)
                 pprint("%s" % accepted_genre_list)
                 sys.exit(1)
+        set_playlist_name(self)
+        create_blank_playlist(self)
         populate_playlist(self)
 
 
 def create_blank_playlist(self):
     self.spotify.user_playlist_create(user=self.uid, name=self.playlist_name)
+
+
+def set_playlist_name(self):
+    self.playlist_name = ("%s %s" % (str(self.genres), str(self.curr_time)))
+    playlist_name = ''
+    for i in self.genres:
+        playlist_name += i + "/"
+    self.playlist_name = "%s %s" % (playlist_name[:-1], str(self.curr_time))
 
 
 def populate_playlist(self):
@@ -52,11 +61,11 @@ def populate_playlist(self):
         for i, playlist in enumerate(playlists['items']):
             if self.playlist_name in playlist['name']:
                 while len(tracks) < self.limit:
-                    reccs = self.spotify.recommendations(seed_genres=self.genres, limit=1)
+                    reccs = self.spotify.recommendations(seed_genres=self.genres, limit=1, country='GB')
                     for j, track in enumerate(reccs['tracks']):
                         tracks.append(track['id'])
                 self.spotify.user_playlist_add_tracks(user=self.uid, playlist_id=playlist['id'], tracks=tracks)
-                print("Succesfully added at least %s songs to your new playlist %s\nENJOY :)"
+                print("Succesfully added %s songs to your new playlist %s\nENJOY :)"
                       % (self.limit, self.playlist_name))
         if playlists['next']:
             playlists = self.spotify.next(playlists)
