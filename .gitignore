@@ -1,4 +1,4 @@
 
-.idea/inspectionProfiles/Project_Default.xml
-*.xml
+.idea/*
 *.iml
+utils/.cache-*
