@@ -9,6 +9,14 @@ import spotipy.util as util
 from bs4 import BeautifulSoup
 
 
+class Spotify:
+    def __init__(self, uid):
+        self.uid = uid
+        self.scope = "playlist-modify-private, playlist-modify-public"
+        self.token = util.prompt_for_user_token(self.uid, self.scope)
+        self.spotify = spotipy.Spotify(auth=self.token)
+
+
 def pull_artist(site):
     # query the website and return the html to the variable page
     page = urlopen(site)
@@ -28,20 +36,20 @@ def pull_setlist(site):
     return [songs.text.strip() for songs in songs_html]
 
 
-def create_playlist(playlist_name):
-    sp.user_playlist_create(username, playlist_name)
+def create_playlist(sp, playlist_name):
+    sp.spotify.user_playlist_create(sp.uid, playlist_name)
 
 
-def add_to_playlist(playlist_songs, playlist_artist):
-    playlists = sp.user_playlists(username, limit=1)
+def add_to_playlist(sp, playlist_songs, playlist_artist):
+    playlists = sp.spotify.user_playlists(sp.uid, limit=1)
     for playlist in playlists['items']:
         for s in playlist_songs:
             search_string = s + ' artist:' + playlist_artist.split('@ ', 1)[0]
-            search_song = sp.search(q=search_string, type='track', limit=1)
+            search_song = sp.spotify.search(q=search_string, type='track', limit=1)
             for song in search_song['tracks']['items']:
                 song_uri = song['uri']
                 tracks = [song_uri]
-                sp.user_playlist_add_tracks(username, playlist_id=playlist['id'], tracks=tracks,
+                sp.spotify.user_playlist_add_tracks(sp.uid, playlist_id=playlist['id'], tracks=tracks,
                                             position=None)
 
 
@@ -53,15 +61,9 @@ if __name__ == '__main__':
                         help='Your setlist.fm link')
     args = parser.parse_args()
     song_page = args.setlist
-    username = args.uid
-    scope = "playlist-modify-private, playlist-modify-public"
-    token = util.prompt_for_user_token(username, scope)
-    if token:
-        sp = spotipy.Spotify(auth=token)
-        artist = pull_artist(song_page)
-        create_playlist(artist)
+    sp = Spotify(args.uid)
+    artist = pull_artist(song_page)
+    create_playlist(sp, artist)
 
-        songs = pull_setlist(song_page)
-        add_to_playlist(songs, artist)
-    else:
-        print("Can't get token for {}").format(username)
+    songs = pull_setlist(song_page)
+    add_to_playlist(sp, songs, artist)
