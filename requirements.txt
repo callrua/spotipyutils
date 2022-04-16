@@ -1,0 +1,4 @@
+bs4
+spotipy
+flask
+Flask-Navigation
