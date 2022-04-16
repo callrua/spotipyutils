@@ -2,3 +2,5 @@
 .idea/*
 *.iml
 utils/.cache-*
+__pycache__/
+.cache*
