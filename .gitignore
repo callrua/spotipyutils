@@ -2,3 +2,4 @@
 .idea/*
 *.iml
 utils/.cache-*
+*/.cache*
