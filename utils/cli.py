@@ -4,6 +4,8 @@ import sys
 import click
 import spotipy
 import spotipy.util as util
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 
 
 CONTEXT_SETTINGS = dict(auto_envvar_prefix="SPOTIFY")
@@ -11,11 +13,45 @@ CONTEXT_SETTINGS = dict(auto_envvar_prefix="SPOTIFY")
 
 class Spotify:
     def __init__(self):
-        self.greeting = "Spotify greeting"
+        self.id = id
+        self.scope = "playlist-modify-private, playlist-modify-public"
+        self.token = util.prompt_for_user_token(self.id, self.scope)
+        self.spotify = spotipy.Spotify(auth=self.token)
 
+    def greet(self, message):
+        print(f"Hi this is the {message}")
 
-    def greet(self):
-        print(f"Hi this is the {self.greeting}")
+    def setlist_to_playlist(self, setlist_url):
+        """ Create a Spotify Playlist from a Setlist.fm URL."""
+        print(f"Username is: {self.id}")
+        # Parse the Artist's name from the HTML
+        page = urlopen(setlist_url)
+        soup = BeautifulSoup(page, 'html.parser')
+        artist_name_box = soup.find('div', attrs={'class': 'setlistHeadline'})
+        artist_name = artist_name_box.text.strip()
+        artist = artist_name.split('Edit venue', 1)[0].rstrip().replace('\n', ' ').replace('Setlist at', '@')
+
+        # Create a blank Spotify playlist
+        self.spotify.user_playlist_create(self.id, artist)
+
+        # Parse the setlist's songs from the HTML
+        page = urlopen(setlist_url)
+        soup = BeautifulSoup(page, 'html.parser')
+        songs_html = soup.find_all('a', attrs={'class': 'songLabel'})
+        songs = [s.text.strip() for s in songs_html]
+
+        # Add the setlist's songs to the Spotify playlist
+        playlists = self.spotify.user_playlists(self.id, limit=1)
+        for playlist in playlists['items']:
+            for s in songs:
+                search_string = s + ' artist:' + artist.split('@ ', 1)[0]
+                search_song = self.spotify.search(q=search_string, type='track', limit=1)
+                for song in search_song['tracks']['items']:
+                    song_uri = song['uri']
+                    tracks = [song_uri]
+                    self.spotify.user_playlist_add_tracks(self.id, playlist_id=playlist['id'], tracks=tracks,
+                                                position=None)
+
 
 
 pass_environment = click.make_pass_decorator(Spotify, ensure=True)
@@ -42,6 +78,7 @@ class SpotifyCLI(click.MultiCommand):
 
 
 @click.command(cls=SpotifyCLI, context_settings=CONTEXT_SETTINGS)
+@click.option("--id", type=str, help="ID of User who will own the playlist")
 @pass_environment
-def cli(ctx):
-    return
+def cli(ctx, id):
+    ctx.id = id
