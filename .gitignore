@@ -4,3 +4,4 @@
 utils/.cache-*
 __pycache__/
 .cache*
+spotipy_utils.egg-info/
