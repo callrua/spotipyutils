@@ -2,6 +2,7 @@ from utils.cli import pass_environment
 
 import click
 
+
 @click.command("top_tracks_playlist", short_help="Turns a setlist.fm setlist into a Spotify playlist.")
 @pass_environment
 def cli(ctx):
