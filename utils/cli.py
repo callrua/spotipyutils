@@ -19,9 +19,6 @@ class Spotify:
         self.token = util.prompt_for_user_token(self.id, self.scope)
         self.spotify = spotipy.Spotify(auth=self.token)
 
-    def greet(self, message):
-        print(f"Hi this is the {message}")
-
     def setlist_to_playlist(self, setlist_url):
         """ Create a Spotify Playlist from a Setlist.fm URL."""
         print(f"Username is: {self.id}")
