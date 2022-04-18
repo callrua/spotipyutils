@@ -53,11 +53,11 @@ pip install --editable .
 ## Creating a playlist from a setlist.fm link
 
 ```
-docker run spotipy_image --id <spotify_user_id> setlist_to_playlist --setlist <setlist.fm_url>
+docker run spotipy_image setlist_to_playlist --setlist <setlist.fm_url> --id <spotify_user_id>
 ```
 
 ```
-spotipy-utils --id <spotify_user_id> setlist_to_playlist --setlist <setlist.fm_url>
+spotipy-utils setlist_to_playlist --setlist <setlist.fm_url> --id <spotify_user_id>
 ```
 
 https://www.setlist.fm/setlist/muse/2004/worthy-farm-pilton-england-63d7a6f3.html
@@ -71,11 +71,11 @@ https://www.setlist.fm/setlist/muse/2004/worthy-farm-pilton-england-63d7a6f3.htm
 Creates 3 playlists, top songs based on long term, medium term and short term time period.
 
 ```
-docker run spotipy_image --id <spotify_user_id> top_tracks_to_playlist
+docker run spotipy_image top_tracks_to_playlist --id <spotify_user_id> 
 ```
 
 ```
-spotipy-utils --id <spotify_user_id> top_tracks_to_playlist
+spotipy-utils top_tracks_to_playlist --id <spotify_user_id>
 ```
 
 ![alt text](https://github.com/callrua/setlistToSpotify/blob/master/screencaps/top_tracks_playlist.png)
