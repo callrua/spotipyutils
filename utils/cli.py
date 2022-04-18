@@ -21,7 +21,6 @@ class Spotify:
 
     def setlist_to_playlist(self, setlist_url):
         """ Create a Spotify Playlist from a Setlist.fm URL."""
-        print(f"Username is: {self.id}")
         # Parse the Artist's name from the HTML
         page = urlopen(setlist_url)
         soup = BeautifulSoup(page, 'html.parser')
@@ -101,7 +100,6 @@ class SpotifyCLI(click.MultiCommand):
 
 
 @click.command(cls=SpotifyCLI, context_settings=CONTEXT_SETTINGS)
-@click.option("--id", type=str, help="ID of User who will own the playlist")
 @pass_environment
-def cli(ctx, id):
-    ctx.id = id
+def cli(ctx):
+    pass
