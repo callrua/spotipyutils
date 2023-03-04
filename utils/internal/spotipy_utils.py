@@ -1,8 +1,5 @@
-import os
-import sys
 import datetime
 
-import click
 import spotipy
 import spotipy.util as util
 from urllib.request import urlopen
@@ -22,6 +19,7 @@ class Spotify:
         page = urlopen(setlist_url)
         soup = BeautifulSoup(page, 'html.parser')
         artist_name_box = soup.find('div', attrs={'class': 'setlistHeadline'})
+        assert artist_name_box is not None
         artist_name = artist_name_box.text.strip()
         artist = artist_name.split('Edit venue', 1)[0].rstrip().replace('\n', ' ').replace('Setlist at', '@')
 
@@ -36,10 +34,12 @@ class Spotify:
 
         # Add the setlist's songs to the Spotify playlist
         playlists = self.spotify.user_playlists(self.id, limit=1)
+        assert playlists is not None
         for playlist in playlists['items']:
             for s in songs:
                 search_string = s + ' artist:' + artist.split('@ ', 1)[0]
                 search_song = self.spotify.search(q=search_string, type='track', limit=1)
+                assert search_song is not None
                 for song in search_song['tracks']['items']:
                     song_uri = song['uri']
                     tracks = [song_uri]
@@ -49,9 +49,11 @@ class Spotify:
 
     def add_top_to_playlist(self, song_name, song_artist):
         playlists = self.spotify.user_playlists(self.id, limit=1)
+        assert playlists is not None
         for playlist in playlists['items']:
             search_string = song_name + ' artist:' + song_artist
             search_song = self.spotify.search(q=search_string, type='track', limit=1)
+            assert search_song is not None
             for song in search_song['tracks']['items']:
                 song_uri = song['uri']
                 tracks = [song_uri]
