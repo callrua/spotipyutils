@@ -6,8 +6,9 @@ setup(
     packages=["utils", "utils.commands", "utils.internal"],
     include_package_data=True,
     install_requires=["click"],
-    entry_points="""
-        [console_scripts]
-        spotipy-utils=utils.cli:cli
-    """
+    entry_points={
+        'console_scripts': [
+            'spotipy-utils = utils.cli:cli',
+        ],
+    },
 )

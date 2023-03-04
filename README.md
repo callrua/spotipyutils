@@ -29,6 +29,8 @@ Your preferred browser should pop-up, log in to your Spotify account and then pa
 http://localhost/?code=[...]
 ```
 
+> If using WSL and not seeing a pop-up, try setting the environment variable "BROWSER=wslview"
+
 # Requirements
 
 python3 
