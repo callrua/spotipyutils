@@ -7,6 +7,8 @@ from utils.internal.spotipy_utils import Spotify
 CONTEXT_SETTINGS = dict(auto_envvar_prefix="SPOTIFY")
 
 
+# Creates a Spotify class, that is passed around anything with @pass_environment
+# ensure=True ensures this class is created
 pass_environment = click.make_pass_decorator(Spotify, ensure=True)
 cmd_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "commands"))
 

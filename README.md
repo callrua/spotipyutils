@@ -29,6 +29,8 @@ Your preferred browser should pop-up, log in to your Spotify account and then pa
 http://localhost/?code=[...]
 ```
 
+> If using WSL and not seeing a pop-up, try setting the environment variable "BROWSER=wslview"
+
 # Requirements
 
 python3 
@@ -37,11 +39,12 @@ python-pip packages can be found in `requirements.txt`
 
 # Building
 
+> The following assumes the Authentication environment variables mentioned above are set.
+
 ### Docker:
 
 ```
-docker build --build-arg SPOTIPY_CLIENT_ID=<spotify_client_id> --build-arg SPOTIPY_CLIENT_SECRET=<spotify_client_secret>
-3d3583f4f1 --build-arg SPOTIPY_REDIRECT_URI=<spotify_redirect_uri> -t spotipy_image --rm .
+ docker build --build-arg SPOTIPY_CLIENT_ID=${SPOTIPY_CLIENT_ID} --build-arg SPOTIPY_CLIENT_SECRET=${SPOTIPY_CLIENT_SECRET} --build-arg SPOTIPY_REDIRECT_URI=${SPOTIPY_REDIRECT_URI} -t spotipy_image --rm .
 ```
 
 ### pip with setup.py
