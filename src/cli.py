@@ -1,7 +1,7 @@
 import os
 import click
 
-from utils.internal.spotipy_utils import Spotify
+from src.internal.spotipy_utils import Spotify
 
 
 CONTEXT_SETTINGS = dict(auto_envvar_prefix="SPOTIFY")

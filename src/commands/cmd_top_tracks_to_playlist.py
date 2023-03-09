@@ -1,4 +1,4 @@
-from utils.cli import pass_environment
+from src.cli import pass_environment
 
 import click
 
