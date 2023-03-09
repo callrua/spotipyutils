@@ -15,6 +15,7 @@ cmd_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "commands")
 
 class SpotifyCLI(click.MultiCommand):
     def list_commands(self, ctx):
+        """ List commands in the CLI. """
         rv = []
         for filename in os.listdir(cmd_folder):
             if filename in os.listdir(cmd_folder):
@@ -25,14 +26,15 @@ class SpotifyCLI(click.MultiCommand):
 
 
     def get_command(self, ctx, name):
+        """ Add sub-commands to CLI. """
         try:
-            mod = __import__(f"utils.commands.cmd_{name}", None, None, ["cli"])
+            mod = __import__(f"src.commands.cmd_{name}", None, None, ["cmd"])
         except ImportError:
             return
-        return mod.cli
+        return mod.cmd
 
 
 @click.command(cls=SpotifyCLI, context_settings=CONTEXT_SETTINGS)
 @pass_environment
-def cli(ctx):
+def root_cli(ctx):
     pass
