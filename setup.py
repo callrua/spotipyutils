@@ -8,7 +8,7 @@ setup(
     install_requires=["click"],
     entry_points={
         'console_scripts': [
-            'spotipy-utils = src.cli:cli',
+            'spotipy-utils = src.cli:root_cli',
         ],
     },
 )

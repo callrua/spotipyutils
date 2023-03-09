@@ -15,8 +15,14 @@ class Spotify:
 
     def setlist_to_playlist(self, setlist_url):
         """ Create a Spotify Playlist from a Setlist.fm URL."""
+
         # Parse the Artist's name from the HTML
-        page = urlopen(setlist_url)
+        try:
+            page = urlopen(setlist_url)
+        except:
+            print(f"{setlist_url} is an invalid URL, quitting.")
+            quit()
+
         soup = BeautifulSoup(page, 'html.parser')
         artist_name_box = soup.find('div', attrs={'class': 'setlistHeadline'})
         assert artist_name_box is not None
@@ -62,16 +68,15 @@ class Spotify:
 
 
     def top_tracks_to_playlist(self):
-        ranges = ['short_term', 'medium_term', 'long_term']
+        """ Create a Spotify Playlist from user's top tracks."""
+
         time_now = datetime.datetime.now()
         datestamp = time_now.strftime("%Y%m%d")
-        for r in ranges:
-            playlist_name = "{0} {1} top tracks".format(datestamp, r)
+        for r in ['short_term', 'medium_term', 'long_term']:
+            playlist_name = f"{datestamp} {r} top tracks"
             self.spotify.user_playlist_create(self.id, playlist_name)
             results = self.spotify.current_user_top_tracks(time_range=r, limit=100)
             for i, item in enumerate(results['items']):
                 song = item['name']
                 artist = item['artists'][0]['name']
                 self.add_top_to_playlist(song, artist)
-
-
